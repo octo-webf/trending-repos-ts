@@ -1,14 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TrendsService } from '../services/TrendsService'
+import { Trend } from '../services/models'
 
 export interface AppProps {
   trendsService: TrendsService
 }
 
-export const App: React.FC<AppProps> = () => {
+export const App: React.FC<AppProps> = ({trendsService}) => {
+  const [trends, setTrends] = useState<Trend[]>([])
+
   useEffect(() => {
+    trendsService.fetchAll().then(setTrends)
+  }, [trendsService])
 
-  }, [])
+  return <>
+    <ul>
+      {trends.map(trend => <li>{trend.repository.name}</li>)}
 
-  return <h1>hello world</h1>
-};
+    </ul>
+  </>
+}
