@@ -1,4 +1,5 @@
-import { HttpClient } from "./HttpClient";
+import { HttpClient } from './HttpClient'
+import { Trend } from './models'
 
 export interface ApiTrendResponse {
   author: string;
@@ -7,19 +8,6 @@ export interface ApiTrendResponse {
   url: string;
   description: string;
   stars: number;
-}
-
-export interface Trend {
-  author: {
-    name: string;
-    avatar: string;
-  };
-  repository: {
-    name: string;
-    url: string;
-    description: string;
-    stars: number;
-  };
 }
 
 export class TrendsService {
